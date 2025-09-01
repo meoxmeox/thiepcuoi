@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Thiệp cưới — Mạnh Toàn & Thu Hoài</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #fafafa; color: #333; }
+    .section { margin-bottom: 40px; text-align: center; }
+    h1, h2, h3 { margin: 10px 0; }
+    .countdown { font-size: 2em; }
+    .schedule { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .card { background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    form input, form button, form textarea { display: block; width: 100%; margin: 8px 0; padding: 8px; }
+    form button { background: #007BFF; color: #fff; border: none; cursor: pointer; }
+    form button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <div class="section">
+    <h1>MẠNH TOÀN & THU HOÀI</h1>
+    <p><strong>Chủ Nhật, 04/05/2025</strong></p>
+  </div>
+  <div class="section countdown">
+    <div id="days">0</div> ngày
+    <div id="hours">0</div> giờ
+    <div id="minutes">0</div> phút
+    <div id="seconds">0</div> giây
+  </div>
+  <div class="section schedule">
+    <div class="card">
+      <h3>Lễ Thành Hôn (Nhà Trai)</h3>
+      <p>9:00 – Số 124, TDP 3, Tân Triều, Thanh Trì, Hà Nội</p>
+    </div>
+    <div class="card">
+      <h3>Dự Tiệc (Nhà Trai)</h3>
+      <p>11:00 – Trung tâm Blue Lotus, 66 Lê Văn Lương, Thanh Xuân, Hà Nội</p>
+    </div>
+    <div class="card">
+      <h3>Lễ Vu Quy (Nhà Gái)</h3>
+      <p>8:00 – Số 4, ngõ 7, Phùng Khoang, Nam Từ Liêm, Hà Nội</p>
+    </div>
+    <div class="card">
+      <h3>Dự Tiệc (Nhà Gái)</h3>
+      <p>11:00 – Trung tâm Blue Lotus, 66 Lê Văn Lương, Thanh Xuân, Hà Nội</p>
+    </div>
+  </div>
+  <div class="section">
+    <h2>Gửi lời chúc</h2>
+    <form id="wishForm">
+      <input type="text" name="name" placeholder="Tên của bạn" required />
+      <textarea name="message" placeholder="Lời nhắn gửi…" required rows="3"></textarea>
+      <button type="submit">Gửi lời chúc</button>
+    </form>
+  </div>
+  <div class="section">
+    <h2>Xác nhận tham dự</h2>
+    <form id="rsvpForm">
+      <input type="text" name="guest" placeholder="Tên khách mời" required />
+      <select name="attend" required>
+        <option value="">-- Chọn --</option>
+        <option value="yes">Có, tôi sẽ đến</option>
+        <option value="no">Xin lỗi, tôi không tham dự được</option>
+      </select>
+      <button type="submit">Xác nhận</button>
+    </form>
+  </div>
+  <script>
+    // Countdown script
+    const target = new Date("May 4, 2025 09:00:00");
+    function updateCountdown() {
+      const now = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        document.querySelector('.countdown').innerHTML = 'Đã bắt đầu!';
+        clearInterval(timer);
+        return;
+      }
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff / (1000*60*60)) % 24);
+      const minutes = Math.floor((diff / (1000*60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }
+    const timer = setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Optional: handle form submissions (demo only)
+    document.getElementById('wishForm').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Lời chúc của bạn đã được gửi!');
+      e.target.reset();
+    });
+    document.getElementById('rsvpForm').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Cảm ơn bạn đã xác nhận tham dự!');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
